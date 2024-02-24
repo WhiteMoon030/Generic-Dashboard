@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+</head>
+<body>
+    <main>
+        <div class="form-border">
+            <h2>Registration</h2>
+            {% with success_message = get_flashed_messages(category_filter=["success"]) %}
+                {% if success_message %}
+                    <div class="message">
+                        You successfully created an Account!
+                    </div>
+                    <button class="input-button" onclick="document.location.href='/logout'">Login</button>
+                {% else %}
+                    {% with errors = get_flashed_messages(category_filter=["error"]) %}
+                    <form action="#" method="post">
+                        {% if "username" in errors %}
+                            <label for="usernameId">Username <div class="error-label">(required)</div></label>
+                            <input type="text" name="username" class="input-field error-input" id="usernameId" maxlength="20">
+                        {% else %}
+                            <label for="usernameId">Username</label>
+                            <input type="text" name="username" value="{{username}}" class="input-field" id="usernameId" maxlength="20">
+                        {% endif %}
+                        {% if "password" in errors %}
+                            <label for="passwordId">Password <div class="error-label">(required)</div></label>
+                            <input type="password" name="password" class="input-field error-input" id="passwordId" maxlength="50">
+                        {% else %}
+                            <label for="passwordId">Password</label>
+                            <input type="password" name="password" class="input-field" id="passwordId" maxlength="50">
+                        {% endif %}
+                        {% if "repeat_password" in errors %}
+                            <label for="repeat_passwordId">Repeat Password <div class="error-label">(required)</div></label>
+                            <input type="password" name="repeat_password" class="input-field error-input" id="repeat_passwordId" maxlength="50">
+                        {% else %}
+                            <label for="repeat_passwordId">Repeat Password</label>
+                            <input type="password" name="repeat_password" class="input-field" id="repeat_passwordId" maxlength="50">
+                        {% endif %}
+                        {% if "unequal" in errors %}
+                            <div class="error-label error-text">Passwords must be identical!</div>
+                        {% elif "exists" in errors %}
+                            <div class="error-label error-text">User already exists!</div>
+                        {% endif %}
+                        <input type="submit" class="input-button" value="Create User">
+                    </form>
+                    {% endwith %}
+                    <button class="input-button" onclick="document.location.href='/'">Back</button>
+                {% endif%}
+            {% endwith %}
+        </div>
+    </main>
+</body>
+</html>
