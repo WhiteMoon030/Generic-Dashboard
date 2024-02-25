@@ -6,14 +6,19 @@
     <title>{% block title %}{% endblock %}</title>
     {% block css_link %}{% endblock %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/logo.png') }}">
 </head>
 <body>
     <header>
         <nav class="nav-bar">
-            <a class="nav-item" href="/register">Add User</a>
-            <a class="nav-item" href="/logout">Logout</a>
+            <div class="left-list">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo" onclick="document.location.href='/'">
+                <a class="nav-item" href="/register">Add User</a>
+            </div>
+            <div class="right-list">
+                <a class="nav-item" href="/logout">Logout</a>
+            </div>
         </nav>
     </header>
-    
 </body>
 </html>

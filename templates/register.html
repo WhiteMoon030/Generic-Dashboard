@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/logo.png') }}">
 </head>
 <body>
     <main>
@@ -48,7 +49,7 @@
                         <input type="submit" class="input-button" value="Create User">
                     </form>
                     {% endwith %}
-                    <button class="input-button" onclick="document.location.href='/'">Back</button>
+                    <button class="back-button" onclick="document.location.href='/'">Back</button>
                 {% endif%}
             {% endwith %}
         </div>
